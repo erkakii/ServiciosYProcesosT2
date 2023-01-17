@@ -1,17 +1,17 @@
-package ejercicio1;
+package ejercicio2;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
-public class Servidor1 {
+public class Servidor2 {
     public static void main(String[] args) {
         int numeroCliente;
 
         try {
             //Creación del socket servidor
-            ServerSocket serverSocket = new ServerSocket(2500);
+            ServerSocket serverSocket = new ServerSocket(1500);
 
             //Espera de la aceptación
             while (true){
@@ -38,7 +38,7 @@ public class Servidor1 {
     }
 
     private static void escribir(int numeroCliente, BufferedWriter bufferedWriter) throws IOException {
-        bufferedWriter.write(esPrimo(numeroCliente));
+        bufferedWriter.write(factorial(numeroCliente));
         bufferedWriter.newLine();
         bufferedWriter.flush();
     }
@@ -50,20 +50,13 @@ public class Servidor1 {
         return numeroCliente;
     }
 
-    private static  String esPrimo(int num){
-        boolean enc = false;
-        String result = "Es primo";
+    private static  int factorial(int num){
+        int factorial = num;
 
-        if (num <= 1){
-            result = "No es primo";
-        }
-        for (int i = 2; i < num / 2 && !enc ; i++) {
-            if (num % i == 0){
-                result = "No es primo";
-                enc = true;
-            }
+        for (int i = factorial - 1; i > 0 ; i--) {
+            factorial *= i;
         }
 
-        return result;
+        return factorial;
     }
 }

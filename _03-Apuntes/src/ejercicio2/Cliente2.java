@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio2;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -6,13 +6,13 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Cliente1 {
+public class Cliente2 {
     public static void main(String[] args) {
         try {
             //Dirección de socket tipo cliente
             //Dirección ip del servidor y puerto por el que escucha
             System.out.println("(Cliente): Creación de socket");
-            Socket socketCliente = new Socket(InetAddress.getLocalHost(), 2500);
+            Socket socketCliente = new Socket(InetAddress.getLocalHost(), 1500);
 
             //Abrir flujo de lectura y escritura
             System.out.println("(Cliente): Apertura de flujos de entrada y salida");
@@ -31,7 +31,7 @@ public class Cliente1 {
             System.out.println("(Cliente): Lee la respuesta del servidor");
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            System.out.println("Mensaje enviado por el servidor: " + bufferedReader.readLine());
+            System.out.println("Mensaje enviado por el servidor: " + bufferedReader.read());
 
             //Cerrar los flujos de escritura y de lectura
             cerrarFlujos(inputStream, outputStream, outputStreamWriter, bufferedWriter, inputStreamReader, bufferedReader);
@@ -64,7 +64,7 @@ public class Cliente1 {
 
     public static boolean validarOpcion(int num) {
         boolean positivo = false;
-        
+
         if (num > 0){
             positivo = true;
         }
