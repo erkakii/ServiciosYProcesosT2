@@ -12,7 +12,7 @@ public class ClienteTCP {
             //Dirección de socket tipo cliente
             //Dirección ip del servidor y puerto por el que escucha
             System.out.println("(Cliente): Creación de socket");
-            Socket socketCliente = new Socket(InetAddress.getLocalHost(), 50000);
+            Socket socketCliente = new Socket(InetAddress.getLocalHost(), 49900);
 
             //Abrir flujo de lectura y escritura
             System.out.println("(Cliente): Apertura de flujos de entrada y salida");
@@ -21,6 +21,7 @@ public class ClienteTCP {
 
             //Intercambio de datos con el servidor
             System.out.println("(Cliente) Envía el mensaje de 14 al servidor");
+
             outputStream.write(14);
 
             System.out.println("(Cliente): Lee la respuesta del servidor");

@@ -1,11 +1,12 @@
-package ProtocoloTCPEjercicio;
+package ejercicio1;
 
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
-public class clienteTCP {
+public class Cliente1 {
     public static void main(String[] args) {
         try {
             //Dirección de socket tipo cliente
@@ -23,7 +24,9 @@ public class clienteTCP {
             System.out.println("(Cliente) Envía el mensaje de texto al servidor");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-            bufferedWriter.write("Fresco 🥶");
+            Scanner sc = new Scanner(System.in);
+            int numero = sc.nextInt();
+            bufferedWriter.write(numero);
             bufferedWriter.newLine();
             bufferedWriter.flush();
 

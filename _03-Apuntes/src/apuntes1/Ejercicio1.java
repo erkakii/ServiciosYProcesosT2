@@ -1,8 +1,7 @@
-package Ejercicio1;
+package apuntes1;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 
 public class Ejercicio1 {
     public static void main(String[] args){
