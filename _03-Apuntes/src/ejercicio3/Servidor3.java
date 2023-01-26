@@ -33,7 +33,7 @@ public class Servidor3 {
 
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                do {
+
                     System.out.println("(Servidor): Leo número del cliente del cliente");
 
                     numeroCliente = leer(bufferedReader);
@@ -41,7 +41,7 @@ public class Servidor3 {
                     System.out.println("(Servidor): Envío mensaje de texto al cliente");
 
                     escribir(numeroCliente, bufferedWriter);
-                } while (!encontrado);
+
 
 
             }

@@ -1,16 +1,24 @@
-package ProtocoloTCPEjercicio;
-
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
-public class clienteTCP {
+public class Cliente {
+
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String ruta;
+
+
+        System.out.println("Diga la ruta del fichero");
+        ruta = sc.next();
+
         try {
-                //Dirección de socket tipo cliente
-                //Dirección ip del servidor y puerto por el que escucha
-                System.out.println("(Cliente): Creación de socket");
+            //Dirección de socket tipo cliente
+            //Dirección ip del servidor y puerto por el que escucha
+            System.out.println("(Cliente): Creación de socket");
             Socket socketCliente = new Socket(InetAddress.getLocalHost(), 49900);
 
             //Abrir flujo de lectura y escritura
@@ -23,7 +31,8 @@ public class clienteTCP {
             System.out.println("(Cliente) Envía el mensaje de texto al servidor");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-            bufferedWriter.write("Fresco 🥶");
+            System.out.println("La ruta del archivo que enviamos es: " + ruta);
+            bufferedWriter.write(ruta);
             bufferedWriter.newLine();
             bufferedWriter.flush();
 
@@ -48,11 +57,9 @@ public class clienteTCP {
             socketCliente.close();
 
 
-
-
-
         } catch (IOException e) {
             System.out.println(e.getMessage());;
         }
+
     }
 }

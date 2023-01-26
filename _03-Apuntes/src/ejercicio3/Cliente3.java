@@ -36,6 +36,8 @@ public class Cliente3 {
                 int numero = getNumero();
                 escribir(bufferedWriter, numero);
 
+
+
                 //Leemos la respuesta del servidor
                 System.out.println("(Cliente): Lee la respuesta del servidor");
                 mensajeServidor = bufferedReader.readLine();
