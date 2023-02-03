@@ -6,8 +6,10 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 
 public class Servidor {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bfw = new BufferedWriter(new FileWriter("Paquetes.txt", true));
         try {
+
             DatagramSocket socket = new DatagramSocket(49000);
 
             while (true){
@@ -16,20 +18,21 @@ public class Servidor {
                 socket.receive(packet);
                 String mensaje = new String(packet.getData());
                 mensaje = mensaje.trim();
-                escribirEnFichero(mensaje);
+                escribirEnFichero(mensaje, bfw);
                 System.out.println(mensaje);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            bfw.close();
         }
     }
 
-    private static void escribirEnFichero(String mensaje) {
+    private static void escribirEnFichero(String mensaje, BufferedWriter bfw) {
         try {
-            BufferedWriter bfw = new BufferedWriter(new FileWriter("Paquetes.txt", true));
             bfw.write(mensaje);
+            bfw.newLine();
             bfw.flush();
-            bfw.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
