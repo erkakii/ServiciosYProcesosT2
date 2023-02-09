@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.Random;
 
 public class Servidor {
+    public static Random random = new Random();
+    public static int numeroAleatorio = random.nextInt(1,100);
     public static void main(String[] args) {
         DatagramSocket socketServidor = null;
         String numeroRecibido;
@@ -19,6 +22,8 @@ public class Servidor {
 
                 System.out.println("(Servidor) esperando peticiones...");
                 socketServidor.receive(datagramaEntrada);
+
+                new GestorProcesos(socketServidor, datagramaEntrada).start();
             }
         } catch (SocketException e) {
             System.err.println("Error al crear el Socket");
