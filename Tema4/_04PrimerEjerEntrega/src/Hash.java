@@ -14,8 +14,7 @@ public class Hash {
         return  resumen;
     }
 
-    public boolean compararResumenes(byte[] resumen1, byte[] resumen2){
-        boolean iguales = Arrays.equals(resumen1, resumen2);
-        return iguales;
+    public boolean compararResumenes(String resumen1, String resumen2){
+        return resumen1.equals(resumen2);
     }
 }

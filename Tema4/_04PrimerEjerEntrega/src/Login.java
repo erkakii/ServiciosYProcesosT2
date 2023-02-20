@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
@@ -36,20 +37,17 @@ public class Login {
         Hash hash = new Hash();
         byte[] resumen1, contrsenab, resumen2;
         boolean iguales = false;
-        String linea;
+        String linea, resumenHexadecimal;
         String[] contrasenaArchivo;
-
         contrsenab = contrasena.getBytes(StandardCharsets.UTF_8);
-
-
         try {
             resumen2 = hash.getDigest(contrsenab);
+            resumenHexadecimal = String.format("%064x", new BigInteger(1, resumen2));
             BufferedReader br = new BufferedReader(new FileReader("credenciales.cre"));
             linea = br.readLine();
             while(linea != null && !iguales){
                 contrasenaArchivo = linea.split(" ");
-                resumen1 = contrasenaArchivo[1].getBytes(StandardCharsets.UTF_8);
-                iguales = hash.compararResumenes(resumen2, resumen1);
+                iguales = hash.compararResumenes(contrasenaArchivo[1], resumenHexadecimal);
                 linea = br.readLine();
             }
 
