@@ -11,7 +11,6 @@ public class Servidor2 {
             ServerSocket servidor = new ServerSocket(49900);
             Socket peticion;
             while (true) {
-
                 System.out.println("Servidor se encuentra a la escucha de peticiones...");
                 peticion = servidor.accept();
                 System.out.println("(Servidor) conexión establecida...");

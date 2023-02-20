@@ -1,0 +1,99 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+
+public class Login {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String nombre, contrasena;
+        byte[] contrasenab, resumen = null;
+
+        System.out.println("Ingrese su nombre de usuario: ");
+        nombre = sc.nextLine();
+        System.out.println("Ingrese su contraseña: ");
+        contrasena = sc.nextLine();
+
+        try {
+            if (comprobarUsuario(nombre)) {
+                if (comprobarContrasena(contrasena)) {
+                    System.out.println("Bienvenido :D");
+                } else {
+                    System.out.println("Contraseña incorrecta");
+                }
+            }else{
+                System.out.println("El usuario no existe");
+            }
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static boolean comprobarContrasena(String contrasena) {
+        Hash hash = new Hash();
+        byte[] resumen1, contrsenab, resumen2;
+        boolean iguales = false;
+        String linea;
+        String[] contrasenaArchivo;
+
+        contrsenab = contrasena.getBytes(StandardCharsets.UTF_8);
+
+
+        try {
+            resumen2 = hash.getDigest(contrsenab);
+            BufferedReader br = new BufferedReader(new FileReader("credenciales.cre"));
+            linea = br.readLine();
+            while(linea != null && !iguales){
+                contrasenaArchivo = linea.split(" ");
+                resumen1 = contrasenaArchivo[1].getBytes(StandardCharsets.UTF_8);
+                iguales = hash.compararResumenes(resumen2, resumen1);
+                linea = br.readLine();
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        return iguales;
+    }
+
+    public static boolean comprobarUsuario(String nombre){
+        boolean existe = false;
+        //Linea que se lee del archivo
+        String linea;
+        //Arreglo que contiene el nombre y la contraseña
+        String[] nombreArchivo;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("credenciales.cre"));
+            linea = br.readLine();
+            while(linea != null && !existe){
+                //Guardamos solo el nombre que es lo que nos interesa
+                nombreArchivo = linea.split(" ");
+                //Lo comparamos con el nombre que ingreso el usuario por teclado
+                if(nombreArchivo[0].equals(nombre)){
+                    existe = true;
+                }
+                linea = br.readLine();
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return existe;
+    }
+
+
+
+}
+
+

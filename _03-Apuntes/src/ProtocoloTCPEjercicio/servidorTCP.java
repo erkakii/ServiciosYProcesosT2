@@ -50,5 +50,9 @@ public class servidorTCP {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         };
+
+
+
+
     }
 }

@@ -46,6 +46,8 @@ public class Cliente1 {
         }
     }
 
+
+
     private static void cerrarFlujos(InputStream inputStream, OutputStream outputStream, OutputStreamWriter outputStreamWriter, BufferedWriter bufferedWriter, InputStreamReader inputStreamReader, BufferedReader bufferedReader) throws IOException {
         System.out.println("(Cliente): Cerramos flujo de lectura y escritura");
         outputStream.close();
@@ -80,4 +82,5 @@ public class Cliente1 {
 
         return numero;
     }
+
 }

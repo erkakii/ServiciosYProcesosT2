@@ -10,6 +10,7 @@ public class Cliente {
         int puertoServidor = 49900;
         Scanner sc  = new Scanner(System.in);
         String numero, resultado;
+        
 
         try {
             System.out.println("(Cliente): Creando el socket...");
