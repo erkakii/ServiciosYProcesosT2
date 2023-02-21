@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Registro {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         String nombre, contrasena;
         byte[] contrasenab, resumen = null;

@@ -27,7 +27,7 @@ public class Login {
                 if (comprobarContrasena(contrasena)) {
                     System.out.println("Bienvenido :D");
                 } else {
-                    System.out.println("Contraseña incorrecta");
+                    System.out.println("Contraseña incorrecta :(");
                 }
             }else{
                 System.out.println("El usuario no existe");
@@ -60,11 +60,11 @@ public class Login {
             }
 
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error: " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error: " + e.getMessage());
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error: " + e.getMessage());
         }
 
         return iguales;
@@ -92,9 +92,9 @@ public class Login {
             }
 
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error: " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error: " + e.getMessage());
         }
 
         return existe;
