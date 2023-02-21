@@ -8,6 +8,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class Login {
+
+    private static int contador= 0;
+    private static int contadorUsuario = 0;
+    private static int contadorContrasena = 0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String nombre, contrasena;
@@ -34,6 +38,7 @@ public class Login {
     }
 
     private static boolean comprobarContrasena(String contrasena) {
+
         Hash hash = new Hash();
         byte[] resumen1, contrsenab, resumen2;
         boolean iguales = false;
@@ -46,8 +51,11 @@ public class Login {
             BufferedReader br = new BufferedReader(new FileReader("credenciales.cre"));
             linea = br.readLine();
             while(linea != null && !iguales){
+                contadorContrasena++;
                 contrasenaArchivo = linea.split(" ");
-                iguales = hash.compararResumenes(contrasenaArchivo[1], resumenHexadecimal);
+                if (contadorContrasena == contadorUsuario){
+                    iguales = hash.compararResumenes(contrasenaArchivo[1], resumenHexadecimal);
+                }
                 linea = br.readLine();
             }
 
@@ -72,11 +80,13 @@ public class Login {
             BufferedReader br = new BufferedReader(new FileReader("credenciales.cre"));
             linea = br.readLine();
             while(linea != null && !existe){
+                contador++;
                 //Guardamos solo el nombre que es lo que nos interesa
                 nombreArchivo = linea.split(" ");
                 //Lo comparamos con el nombre que ingreso el usuario por teclado
                 if(nombreArchivo[0].equals(nombre)){
                     existe = true;
+                    contadorUsuario = contador;
                 }
                 linea = br.readLine();
             }
