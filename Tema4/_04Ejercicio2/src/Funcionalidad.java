@@ -14,12 +14,22 @@ public class Funcionalidad {
     static final String ALGORITMO = "AES/ECB/PKCS5Padding";
 
 
-
+    /**
+     * Consigue la key a partir de la contraseña
+     * @param password Contraseña
+     * @return Key
+     */
     public Key obtenerClave(String password) {
         Key clave = new SecretKeySpec(password.getBytes(), 0, LONGITUD_CLAVE, "AES");
         return clave;
     }
 
+    /**
+     * Cifra el texto
+     * @param password Contraseña
+     * @param texto Texto a cifrar
+     * @return Texto cifrado
+     */
     public String cifrar(String password, String texto) {
         String result = "";
         try{
@@ -46,6 +56,12 @@ public class Funcionalidad {
         return result;
     }
 
+    /**
+     * Descifra el texto
+     * @param password Contraseña
+     * @param texto Texto a descifrar
+     * @return Texto descifrado
+     */
     public String descifrar(String password, String texto) {
         String result = "";
         try{

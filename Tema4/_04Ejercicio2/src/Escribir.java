@@ -27,7 +27,10 @@ public class Escribir {
         escribir(texto);
     }
 
-    //metodo que escriba en un fichero el texto cifrado
+    /**
+     * Escribe en el archivo
+     * @param texto Texto a escribir
+     */
     public static void escribir(String texto) {
         BufferedWriter bw = null;
         try {

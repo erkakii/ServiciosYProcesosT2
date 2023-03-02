@@ -37,6 +37,11 @@ public class Login {
         }
     }
 
+    /**
+     * Comprueba si la contrasena existe
+     * @param contrasena Nombre del usuario
+     * @return true si existe, false si no existe
+     */
     private static boolean comprobarContrasena(String contrasena) {
 
         Hash hash = new Hash();
@@ -70,6 +75,11 @@ public class Login {
         return iguales;
     }
 
+    /**
+     * Comprueba si el usuario existe
+     * @param nombre Nombre del usuario
+     * @return true si existe, false si no existe
+     */
     public static boolean comprobarUsuario(String nombre){
         boolean existe = false;
         //Linea que se lee del archivo

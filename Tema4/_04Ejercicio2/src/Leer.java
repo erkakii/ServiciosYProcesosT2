@@ -19,6 +19,10 @@ public class Leer {
         System.out.println("El texto es: " + texto);
     }
 
+    /**
+     * Lee el archivo
+     * @return Texto del archivo
+     */
     private static String leer() {
         String password = "";
         BufferedReader br = null;

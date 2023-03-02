@@ -30,6 +30,11 @@ public class Registro {
 
     }
 
+    /**
+     * Escribe en el archivo
+     * @param nombre Nombre del usuario
+     * @param contrasena Contraseña del usuario
+     */
     public static void escribir(String nombre, String contrasena){
         try{
             File archivo = new File("credenciales.cre");
